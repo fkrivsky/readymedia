@@ -33,7 +33,6 @@ pipeline {
                 }
             }
         }
-    }
     post {
         always {
             script {

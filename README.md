@@ -78,3 +78,12 @@ spec:
 *Notes:*
 
 * You need to set `hostNetwork: true`. If you know a better solution please let me know.
+
+## Build script
+
+`docker buildx build --push --platform linux/arm/v7,linux/arm64,linux/amd64 --tag fkrivsky/readymedia:$(date +"%Y-%m-%d") --tag fkrivsky/readymedia:latest .`
+
+### Setup for building
+
+1. Enable containerd image store: <https://docs.docker.com/engine/storage/containerd/>
+2. Install QEMU: `docker run --privileged --rm tonistiigi/binfmt --install all`

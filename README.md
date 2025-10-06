@@ -8,7 +8,7 @@ You can start the container like this:
 
 ```bash
 docker volume create readymediacache
-docker run --restart=unless-stopped -d --name=readymedia1 --net=host -v /my/video/path:/media -v readymediacache:/cache -e VIDEO_DIR1=/media/my_video_files ypopovych/readymedia
+docker run --restart=unless-stopped -d --name=readymedia1 --net=host -v /my/video/path:/media -v readymediacache:/cache -e VIDEO_DIR1=/media/my_video_files fkrivsky/readymedia
 ```
 
 The container needs a volume to cache some data. In the example above a Docker volume is used for that. You can also map the cache to some host folder.
@@ -55,7 +55,7 @@ spec:
       hostNetwork: true
       containers:
       - name: readymedia
-        image: ypopovych/readymedia
+        image: fkrivsky/readymedia
         env:
         - name: VIDEO_DIR1
           value: /media/my_video_files
@@ -78,3 +78,12 @@ spec:
 *Notes:*
 
 * You need to set `hostNetwork: true`. If you know a better solution please let me know.
+
+## Build script
+
+`docker buildx build --push --platform linux/arm/v7,linux/arm64,linux/amd64 --tag fkrivsky/readymedia:$(date +"%Y-%m-%d") --tag fkrivsky/readymedia:latest .`
+
+### Setup for building
+
+1. Enable containerd image store: <https://docs.docker.com/engine/storage/containerd/>
+2. Install QEMU: `docker run --privileged --rm tonistiigi/binfmt --install all`

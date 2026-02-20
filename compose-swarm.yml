@@ -1,0 +1,21 @@
+# Docker Swarm compatible
+services:
+  readymedia:
+    image: fkrivsky/readymedia
+    networks:
+      - host
+    volumes:
+      - /mnt/data/:/media/
+      - readymediacache:/cache
+    environment:
+      - VIDEO_DIR1=/media/video
+      - PICTURES_DIR1=/media/pics
+      - FRIENDLY_NAME=ReadyMedia
+      - inotify=yes
+
+networks:
+  host:
+    external: true
+
+volumes:
+  readymediacache:

@@ -1,0 +1,15 @@
+services:
+  readymedia:
+    image: fkrivsky/readymedia
+    network_mode: host
+    volumes:
+      - /mnt/data/:/media/
+      - readymediacache:/cache
+    environment:
+      - VIDEO_DIR1=/media/video
+      - PICTURES_DIR1=/media/pics
+      - FRIENDLY_NAME=ReadyMedia
+      - inotify=yes
+
+volumes:
+  readymediacache:

@@ -13,6 +13,13 @@ docker run --restart=unless-stopped -d --name=readymedia1 --net=host -v /my/vide
 
 The container needs a volume to cache some data. In the example above a Docker volume is used for that. You can also map the cache to some host folder.
 
+## Docker Compose
+
+It's possible to deploy using Docker Compose file. There are 2 examples:
+
+* One for plain `docker compose` deployment - [compose.yml](./compose.yml)
+* One for `docker stack` deployment within Docker Swarm environment - [compose-swarm.yml](./compose-swarm.yml)
+
 ## Configuration
 
 You can configure the container using the following environment variables:
